@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="list_item_elevation">8dp</dimen>
+    <dimen name="margin_movies_list">8dp</dimen>
+    <dimen name="margin_collections_list">8dp</dimen>
+    <dimen name="movie_image_height">400dp</dimen>
+    <dimen name="margin_top_collections_title">16dp</dimen>
+</resources>

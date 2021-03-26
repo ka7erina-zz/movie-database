@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MovieTitle">
+        <item name="android:textColor">@android:color/holo_purple</item>
+        <item name="android:textSize">@dimen/txt_size_movie_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+        <style name="MovieDescription">
+            <item name="android:textColor">@color/gray</item>
+            <item name="android:textSize">@dimen/txt_size_movie_description</item>
+            <item name="android:textStyle">bold</item>
+        </style>
+
+    <style name="CollectionsTitle">
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">@dimen/txt_size_collections_title</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_collections_title</item>
+        <item name="android:text">@string/collections</item>
+    </style>
+</resources>
