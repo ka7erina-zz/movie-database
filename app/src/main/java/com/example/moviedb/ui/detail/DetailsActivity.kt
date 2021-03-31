@@ -19,9 +19,9 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        val collectionId = intent.extras?.getString(INTENT_EXTRA_MOVIE_ID)
-        if (collectionId != null) {
-            getCollections(collectionId)
+        val movieId = intent.extras?.getString(INTENT_EXTRA_MOVIE_ID)
+        if (movieId != null) {
+            getMovieDetails(movieId)
         } else {
             rv_list_collections.visibility = View.INVISIBLE
             collections_title.visibility = View.INVISIBLE
@@ -32,10 +32,22 @@ class DetailsActivity : AppCompatActivity() {
     private fun getCollections(collectionId: String) {
         vm.getCollections(collectionId)
             .subscribe({
-                createCollections(it)
+                    createCollections(it)
+                },
+                { Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                })
+    }
+
+    @SuppressLint("CheckResult")
+    private fun getMovieDetails(movieId: String) {
+        vm.getMovieDetails(movieId)
+            .subscribe({
+                //TODO display data
+                if (it.belongs_to_collection != null)
+                    getCollections(it.belongs_to_collection)
             },
                 {
-                    Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 })
     }
 

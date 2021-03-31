@@ -12,6 +12,8 @@ class MainViewModel {
     }
 
     fun getMovies(): Single<Movies> {
-        return moviesAPI.getCurrentMovies().with().unwrapResponse()
+        return moviesAPI.getCurrentMovies()
+            .with()
+            .unwrapResponse()
     }
 }

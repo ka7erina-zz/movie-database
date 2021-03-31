@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moviedb.R
-import com.example.moviedb.models.Movies
+import com.example.moviedb.models.Results
 import com.example.moviedb.ui.detail.DetailsActivity
 import com.example.moviedb.utils.INTENT_EXTRA_MOVIE_ID
 import com.example.moviedb.utils.RecyclerViewDecoration
@@ -23,28 +23,33 @@ class MainActivity : AppCompatActivity() {
         getMovies()
 
     }
+
     @SuppressLint("CheckResult")
-    private fun getMovies () {
+    private fun getMovies() {
         vm.getMovies()
             .subscribe({
-                createList(it)
-            },
-                {
-                    Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
-                })
+               createList(it.results)},
+                this::toastMessage
+            )
     }
-    private fun createList(movies: Movies) {
-        mainAdapter = MainAdapter(arrayListOf(), this@MainActivity, object : MovieClickListener {
-            override fun onMovieClick(movieId: String) {
-                val intent = Intent(this@MainActivity, DetailsActivity::class.java).apply {
-                    putExtra(INTENT_EXTRA_MOVIE_ID, movieId)
+
+    private fun toastMessage(throwable: Throwable) {
+        Toast.makeText(this, throwable.message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun createList(movieResults: ArrayList<Results>) {
+        mainAdapter =
+            MainAdapter(movieResults, this@MainActivity, object : MovieClickListener {
+                override fun onMovieClick(movieId: String) {
+                    val intent = Intent(this@MainActivity, DetailsActivity::class.java).apply {
+                        putExtra(INTENT_EXTRA_MOVIE_ID, movieId)
+                    }
+                    startActivity(intent)
                 }
-                startActivity(intent)
-            }
-        })
+            })
         rv_list.apply {
             adapter = mainAdapter
-            layoutManager = GridLayoutManager(this@MainActivity, 5)
+            layoutManager = GridLayoutManager(this@MainActivity, 3)
             addItemDecoration(RecyclerViewDecoration())
         }
     }

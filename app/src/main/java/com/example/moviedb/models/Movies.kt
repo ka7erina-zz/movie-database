@@ -2,6 +2,6 @@ package com.example.moviedb.models
 
 data class Movies(
     val page: Int,
-    val results: Results,
-    val id: String
+    val results: ArrayList<Results>,
+    val id: Int
 )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="txt_size_movie_title">22sp</dimen>
+    <dimen name="txt_size_movie_title">16sp</dimen>
     <dimen name="txt_size_collections_title">16sp</dimen>
     <dimen name="txt_size_movie_description">12sp</dimen>
 </resources>
