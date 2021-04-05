@@ -2,7 +2,7 @@ package com.example.moviedb.models
 
 data class MovieDetails(
     val genres: ArrayList<Genres>,
-    val belongs_to_collection: String,
+    val belongs_to_collection: CollectionDetails,
     val title: String,
     val overview: String,
     val vote_average: String,

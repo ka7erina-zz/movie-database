@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.moviedb.BuildConfig
 import com.example.moviedb.R
 import com.example.moviedb.models.Results
 import kotlinx.android.extensions.LayoutContainer
@@ -26,7 +27,7 @@ class MainAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         movies[position].let { (holder as ViewHolder).bind(it) }
         holder.itemView.setOnClickListener {
-            movieClickListener.onMovieClick(movies[position].id.toString())
+            movieClickListener.onMovieClick(movies[position].id)
         }
     }
 
@@ -36,8 +37,7 @@ class MainAdapter(
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun bind(movie: Results) {
-            // test image
-            Glide.with(context).load("https://image.tmdb.org/t/p/w370_and_h556_bestv2/aMpyrCizvSdc0UIMblJ1srVgAEF.jpg")
+            Glide.with(context).load(BuildConfig.IMAGE_URL + movie.poster_path)
                 .placeholder(R.color.gray)
                 .into(containerView.movie_image)
             containerView.movie_title.text = movie.title

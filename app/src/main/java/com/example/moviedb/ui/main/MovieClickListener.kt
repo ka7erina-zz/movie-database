@@ -1,5 +1,5 @@
 package com.example.moviedb.ui.main
 
 interface MovieClickListener {
-    fun onMovieClick(movieId: String)
+    fun onMovieClick(movieId: Int)
 }

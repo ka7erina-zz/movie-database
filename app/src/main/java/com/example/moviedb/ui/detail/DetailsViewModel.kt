@@ -13,11 +13,11 @@ class DetailsViewModel {
         MoviesAPI.create()
     }
 
-    fun getMovieDetails(movieId: String): Single<MovieDetails> {
+    fun getMovieDetails(movieId: Int): Single<MovieDetails> {
         return moviesAPI.getMovieDetails(movieId).with().unwrapResponse()
     }
 
-    fun getCollections(collectionId: String): Single<CollectionDetails> {
+    fun getCollections(collectionId: Int): Single<CollectionDetails> {
         return moviesAPI.getCollections(collectionId).with().unwrapResponse()
     }
 }

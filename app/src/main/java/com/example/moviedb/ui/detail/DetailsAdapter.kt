@@ -10,6 +10,7 @@ import com.example.moviedb.BuildConfig
 import com.example.moviedb.R
 import com.example.moviedb.models.CollectionDetails
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.list_item_details.view.*
 
 class DetailsAdapter(
@@ -30,12 +31,12 @@ class DetailsAdapter(
     inner class ViewHolder(override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun bind(collections: CollectionDetails) {
-            Glide.with(context).load(BuildConfig.API_URL + collections.poster_path)
-                .placeholder(R.drawable.ic_launcher_background)
+        fun bind(collection: CollectionDetails) {
+            Glide.with(context)
+                .load(BuildConfig.IMAGE_URL + collection.poster_path)
+                .placeholder(R.color.gray)
                 .into(containerView.collection_image)
-            containerView.collection_title.text = collections.title
-            containerView.vote_average.text = collections.vote_average
+            containerView.collection_title.text = collection.name
         }
     }
 
